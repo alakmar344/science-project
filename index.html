@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATOMVERSE — Class 9 Atoms & Molecules Interactive Science Museum</title>
+  <meta name="description" content="A museum-quality, offline-capable interactive web app teaching Class 9 Atoms and Molecules, featuring Bohr model simulation, 3D molecular geometries, periodic table explorer, verified historical archives, and quick challenges.">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="theme-color" content="#070b09">
+</head>
+<body>
+  <!-- Ambient Low-Overhead Drift Canvas -->
+  <canvas id="ambient-bg-canvas"></canvas>
+
+  <div class="app-wrapper">
+    <!-- Persistent Navigation Bar -->
+    <header class="navbar">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-brand">
+          <div class="nav-logo-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2">
+              <circle cx="12" cy="12" r="3" fill="#fbbf24"/>
+              <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(30 12 12)"/>
+              <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(-30 12 12)"/>
+            </svg>
+          </div>
+          <div>
+            <span class="nav-brand-title">ATOMVERSE</span>
+            <span class="nav-brand-tag">Class 9</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" id="nav-links-menu">
+          <li><a href="#hero" class="nav-link active">Overview</a></li>
+          <li><a href="#atom-explorer" class="nav-link">Atom Explorer</a></li>
+          <li><a href="#element-explorer" class="nav-link">Element Explorer</a></li>
+          <li><a href="#molecule-explorer" class="nav-link">Molecule Explorer</a></li>
+          <li><a href="#challenges" class="nav-link">Quick Challenges</a></li>
+          <li><a href="#contributor-library" class="nav-link">Contributor Library</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button id="sound-toggle-btn" class="btn btn-outline btn-xs" title="Toggle audio feedback">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            Audio ON
+          </button>
+          <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <!-- Hero Section (5 Zoom Beats) -->
+      <section id="hero">
+        <div id="hero-container"></div>
+      </section>
+
+      <!-- 1. Atom Explorer -->
+      <section id="atom-explorer">
+        <div id="atom-explorer-container"></div>
+      </section>
+
+      <!-- 2. Element Explorer (Periodic Table) -->
+      <section id="element-explorer">
+        <div id="element-explorer-container"></div>
+      </section>
+
+      <!-- 3. Molecule Explorer -->
+      <section id="molecule-explorer">
+        <div id="molecule-explorer-container"></div>
+      </section>
+
+      <!-- 4. Quick Challenges -->
+      <section id="challenges">
+        <div id="challenges-container"></div>
+      </section>
+
+      <!-- 5. Contributor Library -->
+      <section id="contributor-library">
+        <div id="contributor-library-container"></div>
+      </section>
+    </main>
+
+    <!-- Museum Footer -->
+    <footer class="museum-footer">
+      <div class="footer-content">
+        <div class="footer-logo">⚛️ ATOMVERSE</div>
+        <p class="footer-text">Built strictly per NCERT Class 9 Chemistry standards. Deterministic, offline-capable, and optimized for low-spec hardware without any external API or WebGL overhead.</p>
+        <p class="footer-text" style="font-size: 0.75rem; opacity: 0.6;">© ATOMVERSE Interactive Science Museum • Standard IUPAC & Royal Society Reference Data</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Verified Data Files (Strictly Hardcoded, Zero AI generation) -->
+  <script src="js/data/elements.js"></script>
+  <script src="js/data/molecules.js"></script>
+  <script src="js/data/scientists.js"></script>
+  <script src="js/data/questions.js"></script>
+
+  <!-- Museum UI Interactive Components -->
+  <script src="js/components/hero.js"></script>
+  <script src="js/components/atomExplorer.js"></script>
+  <script src="js/components/elementExplorer.js"></script>
+  <script src="js/components/moleculeViewer.js"></script>
+  <script src="js/components/challenges.js"></script>
+  <script src="js/components/contributorLib.js"></script>
+
+  <!-- Application Coordinator -->
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "atomverse",
+  "version": "1.0.0",
+  "description": "Museum-quality interactive web app teaching Atoms & Molecules at Class 9 level",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve . -l 3000"
+  },
+  "keywords": [
+    "chemistry",
+    "education",
+    "atoms",
+    "molecules",
+    "class9",
+    "periodic-table",
+    "bohr-model",
+    "interactive-museum"
+  ],
+  "author": "ATOMVERSE Team",
+  "license": "MIT"
+}
