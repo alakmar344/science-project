@@ -18,23 +18,23 @@ window.ATOMVERSE.Hero = (function () {
         <svg class="hero-svg" viewBox="0 0 400 300" aria-label="Macroscopic droplet and crystal">
           <defs>
             <radialGradient id="dropGrad" cx="35%" cy="35%" r="65%">
-              <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9"/>
-              <stop offset="60%" stop-color="#0284c7" stop-opacity="0.7"/>
-              <stop offset="100%" stop-color="#0369a1" stop-opacity="0.3"/>
+              <stop offset="0%" stop-color="#52c2ad" stop-opacity="0.9"/>
+              <stop offset="60%" stop-color="#3b9b88" stop-opacity="0.7"/>
+              <stop offset="100%" stop-color="#1e6b5d" stop-opacity="0.4"/>
             </radialGradient>
             <linearGradient id="crystGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.8"/>
-              <stop offset="100%" stop-color="#d97706" stop-opacity="0.3"/>
+              <stop offset="0%" stop-color="#d97706" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="#92400e" stop-opacity="0.4"/>
             </linearGradient>
           </defs>
           <!-- Water drop shape -->
-          <path d="M 160,70 C 160,70 110,150 110,185 C 110,215 132,240 160,240 C 188,240 210,215 210,185 C 210,150 160,70 160,70 Z" fill="url(#dropGrad)" stroke="#38bdf8" stroke-width="2"/>
-          <ellipse cx="145" cy="170" rx="12" ry="24" fill="#ffffff" opacity="0.3" transform="rotate(-20 145 170)"/>
+          <path d="M 160,70 C 160,70 110,150 110,185 C 110,215 132,240 160,240 C 188,240 210,215 210,185 C 210,150 160,70 160,70 Z" fill="url(#dropGrad)" stroke="#52c2ad" stroke-width="2"/>
+          <ellipse cx="145" cy="170" rx="12" ry="24" fill="#ffffff" opacity="0.4" transform="rotate(-20 145 170)"/>
           <!-- Crystal isometric block -->
-          <polygon points="260,110 320,80 320,150 260,180" fill="url(#crystGrad)" stroke="#fbbf24" stroke-width="1.5"/>
-          <polygon points="260,110 200,80 200,150 260,180" fill="#f59e0b" fill-opacity="0.4" stroke="#fbbf24" stroke-width="1.5"/>
-          <polygon points="260,110 320,80 260,50 200,80" fill="#fef3c7" fill-opacity="0.7" stroke="#fbbf24" stroke-width="1.5"/>
-          <text x="200" y="275" text-anchor="middle" fill="#94a3b8" font-size="13" font-family="inherit">Liquid Water & Mineral Crystals at Human Scale</text>
+          <polygon points="260,110 320,80 320,150 260,180" fill="url(#crystGrad)" stroke="#f59e0b" stroke-width="1.5"/>
+          <polygon points="260,110 200,80 200,150 260,180" fill="#d97706" fill-opacity="0.4" stroke="#f59e0b" stroke-width="1.5"/>
+          <polygon points="260,110 320,80 260,50 200,80" fill="#fef3c7" fill-opacity="0.75" stroke="#f59e0b" stroke-width="1.5"/>
+          <text x="200" y="275" text-anchor="middle" fill="#64748b" font-size="13" font-family="inherit" font-weight="500">Liquid Water & Mineral Crystals at Human Scale</text>
         </svg>
       `
     },
@@ -48,30 +48,30 @@ window.ATOMVERSE.Hero = (function () {
         <svg class="hero-svg" viewBox="0 0 400 300" aria-label="Water molecules network">
           <g class="pulsing-mol">
             <!-- Molecule 1 (Center) -->
-            <line x1="200" y1="140" x2="160" y2="105" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
-            <line x1="200" y1="140" x2="240" y2="105" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+            <line x1="200" y1="140" x2="160" y2="105" stroke="#64748b" stroke-width="3" stroke-linecap="round"/>
+            <line x1="200" y1="140" x2="240" y2="105" stroke="#64748b" stroke-width="3" stroke-linecap="round"/>
             <circle cx="200" cy="140" r="18" fill="#ef4444" stroke="#fca5a5" stroke-width="2"/>
             <text x="200" y="145" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">O</text>
-            <circle cx="160" cy="105" r="11" fill="#e2e8f0" stroke="#ffffff" stroke-width="2"/>
+            <circle cx="160" cy="105" r="11" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
             <text x="160" y="109" fill="#0f172a" font-size="10" font-weight="bold" text-anchor="middle">H</text>
-            <circle cx="240" cy="105" r="11" fill="#e2e8f0" stroke="#ffffff" stroke-width="2"/>
+            <circle cx="240" cy="105" r="11" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
             <text x="240" y="109" fill="#0f172a" font-size="10" font-weight="bold" text-anchor="middle">H</text>
 
             <!-- Intermolecular hydrogen bonds (dashed) -->
-            <line x1="240" y1="105" x2="290" y2="140" stroke="#38bdf8" stroke-dasharray="4,4" stroke-width="2"/>
-            <line x1="160" y1="105" x2="110" y2="140" stroke="#38bdf8" stroke-dasharray="4,4" stroke-width="2"/>
+            <line x1="240" y1="105" x2="290" y2="140" stroke="#708d32" stroke-dasharray="4,4" stroke-width="2"/>
+            <line x1="160" y1="105" x2="110" y2="140" stroke="#708d32" stroke-dasharray="4,4" stroke-width="2"/>
 
             <!-- Molecule 2 (Right) -->
             <circle cx="290" cy="140" r="14" fill="#ef4444" opacity="0.8"/>
-            <circle cx="320" cy="165" r="9" fill="#e2e8f0" opacity="0.8"/>
-            <line x1="290" y1="140" x2="320" y2="165" stroke="#94a3b8" stroke-width="2"/>
+            <circle cx="320" cy="165" r="9" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" opacity="0.8"/>
+            <line x1="290" y1="140" x2="320" y2="165" stroke="#64748b" stroke-width="2"/>
 
             <!-- Molecule 3 (Left) -->
             <circle cx="110" cy="140" r="14" fill="#ef4444" opacity="0.8"/>
-            <circle cx="80" cy="165" r="9" fill="#e2e8f0" opacity="0.8"/>
-            <line x1="110" y1="140" x2="80" y2="165" stroke="#94a3b8" stroke-width="2"/>
+            <circle cx="80" cy="165" r="9" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" opacity="0.8"/>
+            <line x1="110" y1="140" x2="80" y2="165" stroke="#64748b" stroke-width="2"/>
           </g>
-          <text x="200" y="275" text-anchor="middle" fill="#94a3b8" font-size="13" font-family="inherit">Covalent H₂O Clusters with Hydrogen Bonding</text>
+          <text x="200" y="275" text-anchor="middle" fill="#64748b" font-size="13" font-family="inherit" font-weight="500">Covalent H₂O Clusters with Hydrogen Bonding</text>
         </svg>
       `
     },
@@ -84,21 +84,21 @@ window.ATOMVERSE.Hero = (function () {
       graphic: `
         <svg class="hero-svg" viewBox="0 0 400 300" aria-label="Bohr atom shells">
           <!-- Shells -->
-          <circle cx="200" cy="140" r="40" fill="none" stroke="#22d3ee" stroke-dasharray="3,3" stroke-width="1.5" opacity="0.6"/>
-          <circle cx="200" cy="140" r="75" fill="none" stroke="#22d3ee" stroke-dasharray="4,4" stroke-width="1.5" opacity="0.5"/>
-          <circle cx="200" cy="140" r="105" fill="none" stroke="#22d3ee" stroke-dasharray="5,5" stroke-width="1" opacity="0.3"/>
+          <circle cx="200" cy="140" r="40" fill="none" stroke="#708d32" stroke-dasharray="3,3" stroke-width="1.5" opacity="0.6"/>
+          <circle cx="200" cy="140" r="75" fill="none" stroke="#708d32" stroke-dasharray="4,4" stroke-width="1.5" opacity="0.5"/>
+          <circle cx="200" cy="140" r="105" fill="none" stroke="#708d32" stroke-dasharray="5,5" stroke-width="1" opacity="0.35"/>
 
           <!-- Orbiting electrons -->
-          <circle cx="200" cy="100" r="6" fill="#22d3ee" filter="drop-shadow(0 0 4px #06b6d4)"/>
-          <circle cx="200" cy="180" r="6" fill="#22d3ee" filter="drop-shadow(0 0 4px #06b6d4)"/>
-          <circle cx="275" cy="140" r="6" fill="#22d3ee" filter="drop-shadow(0 0 4px #06b6d4)"/>
-          <circle cx="125" cy="140" r="6" fill="#22d3ee" filter="drop-shadow(0 0 4px #06b6d4)"/>
+          <circle cx="200" cy="100" r="6" fill="#52c2ad" filter="drop-shadow(0 0 4px #3b9b88)"/>
+          <circle cx="200" cy="180" r="6" fill="#52c2ad" filter="drop-shadow(0 0 4px #3b9b88)"/>
+          <circle cx="275" cy="140" r="6" fill="#52c2ad" filter="drop-shadow(0 0 4px #3b9b88)"/>
+          <circle cx="125" cy="140" r="6" fill="#52c2ad" filter="drop-shadow(0 0 4px #3b9b88)"/>
 
           <!-- Nucleus dot -->
-          <circle cx="200" cy="140" r="14" fill="#f59e0b" filter="drop-shadow(0 0 8px #fbbf24)"/>
-          <text x="200" y="144" fill="#1e1b4b" font-size="10" font-weight="bold" text-anchor="middle">Nucleus</text>
+          <circle cx="200" cy="140" r="14" fill="#d97706" filter="drop-shadow(0 0 8px #f59e0b)"/>
+          <text x="200" y="144" fill="#ffffff" font-size="10" font-weight="bold" text-anchor="middle">Core</text>
 
-          <text x="200" y="275" text-anchor="middle" fill="#94a3b8" font-size="13" font-family="inherit">Quantized Shells (K=2, L=8) Surrounding Dense Core</text>
+          <text x="200" y="275" text-anchor="middle" fill="#64748b" font-size="13" font-family="inherit" font-weight="500">Quantized Shells (K=2, L=8) Surrounding Dense Core</text>
         </svg>
       `
     },
@@ -112,29 +112,29 @@ window.ATOMVERSE.Hero = (function () {
         <svg class="hero-svg" viewBox="0 0 400 300" aria-label="Nucleus protons and neutrons">
           <defs>
             <radialGradient id="nucGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.3"/>
-              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+              <stop offset="0%" stop-color="#d97706" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#d97706" stop-opacity="0"/>
             </radialGradient>
           </defs>
           <circle cx="200" cy="140" r="90" fill="url(#nucGlow)"/>
 
           <!-- Protons (Amber) & Neutrons (Slate/Olive) clustered -->
-          <circle cx="185" cy="125" r="18" fill="#f59e0b" stroke="#fcd34d" stroke-width="2"/>
+          <circle cx="185" cy="125" r="18" fill="#d97706" stroke="#fef08a" stroke-width="2"/>
           <text x="185" y="131" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">p⁺</text>
 
-          <circle cx="215" cy="125" r="18" fill="#64748b" stroke="#94a3b8" stroke-width="2"/>
+          <circle cx="215" cy="125" r="18" fill="#64748b" stroke="#cbd5e1" stroke-width="2"/>
           <text x="215" y="131" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">n⁰</text>
 
-          <circle cx="180" cy="155" r="18" fill="#64748b" stroke="#94a3b8" stroke-width="2"/>
+          <circle cx="180" cy="155" r="18" fill="#64748b" stroke="#cbd5e1" stroke-width="2"/>
           <text x="180" y="161" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">n⁰</text>
 
-          <circle cx="215" cy="155" r="18" fill="#f59e0b" stroke="#fcd34d" stroke-width="2"/>
+          <circle cx="215" cy="155" r="18" fill="#d97706" stroke="#fef08a" stroke-width="2"/>
           <text x="215" y="161" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">p⁺</text>
 
-          <circle cx="200" cy="140" r="17" fill="#f59e0b" stroke="#fcd34d" stroke-width="2"/>
+          <circle cx="200" cy="140" r="17" fill="#d97706" stroke="#fef08a" stroke-width="2"/>
           <text x="200" y="146" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">p⁺</text>
 
-          <text x="200" y="275" text-anchor="middle" fill="#94a3b8" font-size="13" font-family="inherit">Protons (p⁺) & Neutrons (n⁰) Bound by Nuclear Force</text>
+          <text x="200" y="275" text-anchor="middle" fill="#64748b" font-size="13" font-family="inherit" font-weight="500">Protons (p⁺) & Neutrons (n⁰) Bound by Nuclear Force</text>
         </svg>
       `
     },
@@ -147,20 +147,20 @@ window.ATOMVERSE.Hero = (function () {
       graphic: `
         <svg class="hero-svg" viewBox="0 0 400 300" aria-label="Chemical synthesis and elements">
           <g transform="translate(100, 130)">
-            <circle cx="0" cy="0" r="30" fill="#38bdf8" fill-opacity="0.2" stroke="#38bdf8" stroke-width="2"/>
-            <text x="0" y="6" fill="#38bdf8" font-size="16" font-weight="bold" text-anchor="middle">H</text>
+            <circle cx="0" cy="0" r="30" fill="#52c2ad" fill-opacity="0.2" stroke="#52c2ad" stroke-width="2"/>
+            <text x="0" y="6" fill="#1e7061" font-size="16" font-weight="bold" text-anchor="middle">H</text>
           </g>
-          <text x="150" y="136" fill="#fbbf24" font-size="24" font-weight="bold" text-anchor="middle">+</text>
+          <text x="150" y="136" fill="#d97706" font-size="24" font-weight="bold" text-anchor="middle">+</text>
           <g transform="translate(200, 130)">
             <circle cx="0" cy="0" r="38" fill="#ef4444" fill-opacity="0.2" stroke="#ef4444" stroke-width="2"/>
             <text x="0" y="6" fill="#ef4444" font-size="18" font-weight="bold" text-anchor="middle">O</text>
           </g>
-          <text x="250" y="136" fill="#fbbf24" font-size="24" font-weight="bold" text-anchor="middle">→</text>
+          <text x="250" y="136" fill="#d97706" font-size="24" font-weight="bold" text-anchor="middle">→</text>
           <g transform="translate(300, 130)">
-            <circle cx="0" cy="0" r="32" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="2"/>
-            <text x="0" y="5" fill="#10b981" font-size="14" font-weight="bold" text-anchor="middle">H₂O</text>
+            <circle cx="0" cy="0" r="32" fill="#708d32" fill-opacity="0.2" stroke="#708d32" stroke-width="2"/>
+            <text x="0" y="5" fill="#4f7324" font-size="14" font-weight="bold" text-anchor="middle">H₂O</text>
           </g>
-          <text x="200" y="275" text-anchor="middle" fill="#94a3b8" font-size="13" font-family="inherit">Explore the 5 interactive wings below</text>
+          <text x="200" y="275" text-anchor="middle" fill="#64748b" font-size="13" font-family="inherit" font-weight="500">Explore the 5 interactive wings below</text>
         </svg>
       `
     }
