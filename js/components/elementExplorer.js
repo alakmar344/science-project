@@ -208,8 +208,10 @@ window.ATOMVERSE.ElementExplorer = (function () {
       const z = parseInt(e.currentTarget.getAttribute("data-z"), 10);
       const target = window.ATOMVERSE_DATA.ELEMENTS.find(el => el.number === z);
       if (target && window.ATOMVERSE.AtomExplorer) {
-        // Trigger hash navigation
-        window.location.hash = "atom-explorer";
+        const n = target.standardNeutrons !== undefined ? target.standardNeutrons : Math.round(target.mass - z);
+        window.ATOMVERSE.AtomExplorer.loadElement(z, n, z);
+        const atomSec = document.getElementById("atom-explorer");
+        if (atomSec) atomSec.scrollIntoView({ behavior: "smooth" });
       }
     });
   }

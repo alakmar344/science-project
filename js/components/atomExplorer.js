@@ -284,6 +284,7 @@ window.ATOMVERSE.AtomExplorer = (function () {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const cx = canvas.width / 2;
       const cy = canvas.height / 2;
+      const isLight = document.documentElement.getAttribute("data-theme") === "light";
 
       // Draw Orbit Shells
       const shellRadii = [70, 130, 190];
@@ -294,14 +295,14 @@ window.ATOMVERSE.AtomExplorer = (function () {
       shellRadii.forEach((r, i) => {
         ctx.beginPath();
         ctx.arc(cx, cy, r, 0, Math.PI * 2);
-        ctx.strokeStyle = "rgba(34, 211, 238, 0.2)";
+        ctx.strokeStyle = isLight ? "rgba(79, 115, 36, 0.3)" : "rgba(112, 141, 50, 0.35)";
         ctx.lineWidth = 1.5;
         ctx.setLineDash([4, 4]);
         ctx.stroke();
         ctx.setLineDash([]);
 
         // Label
-        ctx.fillStyle = "rgba(148, 163, 184, 0.4)";
+        ctx.fillStyle = isLight ? "rgba(71, 85, 105, 0.75)" : "rgba(148, 163, 184, 0.5)";
         ctx.font = "10px -apple-system, BlinkMacSystemFont, sans-serif";
         ctx.fillText(shellLabels[i], cx - r + 8, cy - 6);
       });
@@ -313,7 +314,7 @@ window.ATOMVERSE.AtomExplorer = (function () {
         const theta = angleK + (i * Math.PI * 2) / Math.max(shells.k, 1);
         const ex = cx + shellRadii[0] * Math.cos(theta);
         const ey = cy + shellRadii[0] * Math.sin(theta);
-        drawElectron(ctx, ex, ey);
+        drawElectron(ctx, ex, ey, isLight);
       }
 
       // Draw Electrons on L shell
@@ -322,7 +323,7 @@ window.ATOMVERSE.AtomExplorer = (function () {
         const theta = -angleL + (i * Math.PI * 2) / Math.max(shells.l, 1);
         const ex = cx + shellRadii[1] * Math.cos(theta);
         const ey = cy + shellRadii[1] * Math.sin(theta);
-        drawElectron(ctx, ex, ey);
+        drawElectron(ctx, ex, ey, isLight);
       }
 
       // Draw Electrons on M shell
@@ -331,11 +332,11 @@ window.ATOMVERSE.AtomExplorer = (function () {
         const theta = angleM + (i * Math.PI * 2) / Math.max(shells.m, 1);
         const ex = cx + shellRadii[2] * Math.cos(theta);
         const ey = cy + shellRadii[2] * Math.sin(theta);
-        drawElectron(ctx, ex, ey);
+        drawElectron(ctx, ex, ey, isLight);
       }
 
       // Draw Nucleus cluster
-      drawNucleus(ctx, cx, cy, protons, neutrons);
+      drawNucleus(ctx, cx, cy, protons, neutrons, isLight);
 
       animFrameId = requestAnimationFrame(draw);
     }
@@ -344,13 +345,19 @@ window.ATOMVERSE.AtomExplorer = (function () {
     draw();
   }
 
-  function drawElectron(ctx, x, y) {
+  function drawElectron(ctx, x, y, isLight) {
     ctx.save();
-    // Cyan glow
+    // Cyan/Teal glow
     const grad = ctx.createRadialGradient(x, y, 1, x, y, 10);
-    grad.addColorStop(0, "rgba(34, 211, 238, 1)");
-    grad.addColorStop(0.5, "rgba(6, 182, 212, 0.6)");
-    grad.addColorStop(1, "rgba(6, 182, 212, 0)");
+    if (isLight) {
+      grad.addColorStop(0, "rgba(45, 143, 125, 0.9)");
+      grad.addColorStop(0.5, "rgba(30, 112, 97, 0.5)");
+      grad.addColorStop(1, "rgba(30, 112, 97, 0)");
+    } else {
+      grad.addColorStop(0, "rgba(82, 194, 173, 1)");
+      grad.addColorStop(0.5, "rgba(59, 155, 136, 0.6)");
+      grad.addColorStop(1, "rgba(59, 155, 136, 0)");
+    }
 
     ctx.fillStyle = grad;
     ctx.beginPath();
@@ -365,13 +372,13 @@ window.ATOMVERSE.AtomExplorer = (function () {
     ctx.restore();
   }
 
-  function drawNucleus(ctx, cx, cy, pCount, nCount) {
+  function drawNucleus(ctx, cx, cy, pCount, nCount, isLight) {
     const total = pCount + nCount;
     ctx.save();
 
     // Outer faint glow
     const glow = ctx.createRadialGradient(cx, cy, 10, cx, cy, 45);
-    glow.addColorStop(0, "rgba(245, 158, 11, 0.35)");
+    glow.addColorStop(0, isLight ? "rgba(217, 119, 6, 0.25)" : "rgba(245, 158, 11, 0.35)");
     glow.addColorStop(1, "rgba(245, 158, 11, 0)");
     ctx.fillStyle = glow;
     ctx.beginPath();
@@ -379,7 +386,7 @@ window.ATOMVERSE.AtomExplorer = (function () {
     ctx.fill();
 
     if (total === 0) {
-      ctx.fillStyle = "rgba(148, 163, 184, 0.4)";
+      ctx.fillStyle = isLight ? "rgba(71, 85, 105, 0.6)" : "rgba(148, 163, 184, 0.4)";
       ctx.font = "12px sans-serif";
       ctx.textAlign = "center";
       ctx.fillText("Empty Core", cx, cy + 4);
@@ -406,7 +413,7 @@ window.ATOMVERSE.AtomExplorer = (function () {
 
       if (pt.type === "p") {
         // Proton: Amber / Gold
-        ctx.fillStyle = "#f59e0b";
+        ctx.fillStyle = "#d97706";
         ctx.fill();
         ctx.strokeStyle = "#fef08a";
         ctx.lineWidth = 1.2;
@@ -418,7 +425,7 @@ window.ATOMVERSE.AtomExplorer = (function () {
         ctx.textBaseline = "middle";
         ctx.fillText("+", px, py + 1);
       } else {
-        // Neutron: Slate / Olive Neutral
+        // Neutron: Slate / Ink Neutral
         ctx.fillStyle = "#64748b";
         ctx.fill();
         ctx.strokeStyle = "#cbd5e1";
@@ -510,7 +517,15 @@ window.ATOMVERSE.AtomExplorer = (function () {
     });
   }
 
+  function setValues(p, n, e) {
+    protons = Math.max(0, Math.min(p, 20));
+    neutrons = Math.max(0, Math.min(n, 30));
+    electrons = Math.max(0, Math.min(e, 18));
+    update();
+  }
+
   return {
-    render: render
+    render: render,
+    loadElement: setValues
   };
 })();

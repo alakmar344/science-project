@@ -4,6 +4,9 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize Theme Engine (Dark Ink / Light Ivory Paper)
+  initThemeToggle();
+
   // Initialize Background Ambient Canvas
   initAmbientParticles();
 
@@ -25,6 +28,62 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /**
+ * Theme Engine (Deep Ink Dark Mode & Crisp Ivory/Olive Light Mode)
+ */
+function initThemeToggle() {
+  const themeBtn = document.getElementById("theme-toggle-btn");
+  const themeText = document.getElementById("theme-toggle-text");
+  const metaThemeColor = document.getElementById("meta-theme-color");
+
+  function getStoredTheme() {
+    return document.documentElement.getAttribute("data-theme") || localStorage.getItem("atomverse_theme") || "dark";
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("atomverse_theme", theme);
+
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute("content", theme === "light" ? "#f5f8f5" : "#090e13");
+    }
+
+    if (themeBtn && themeText) {
+      if (theme === "light") {
+        themeBtn.innerHTML = `
+          <span class="theme-icon-slot">
+            <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          </span>
+          <span id="theme-toggle-text">Dark Mode</span>
+        `;
+        themeBtn.title = "Switch to Deep Ink Dark Mode";
+      } else {
+        themeBtn.innerHTML = `
+          <span class="theme-icon-slot">
+            <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          </span>
+          <span id="theme-toggle-text">Light Mode</span>
+        `;
+        themeBtn.title = "Switch to Crisp Olive Light Mode";
+      }
+    }
+
+    // Broadcast theme change event for active canvases
+    window.dispatchEvent(new CustomEvent("atomverseThemeChanged", { detail: { theme } }));
+  }
+
+  const currentTheme = getStoredTheme();
+  applyTheme(currentTheme);
+
+  if (themeBtn) {
+    themeBtn.addEventListener("click", () => {
+      const active = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+      const next = active === "light" ? "dark" : "light";
+      applyTheme(next);
+    });
+  }
+}
+
+/**
  * Lightweight, Low-Overhead Ambient Particle Drift Canvas
  * Uses <= 30 particles for zero CPU lag on low-spec hardware.
  */
@@ -44,14 +103,42 @@ function initAmbientParticles() {
   const particleCount = 28;
   const particles = [];
 
+  function getThemeColors() {
+    const isLight = document.documentElement.getAttribute("data-theme") === "light";
+    if (isLight) {
+      return {
+        c1: "rgba(79, 115, 36, ",   // Heritage olive
+        c2: "rgba(71, 85, 105, ",    // Slate ink
+        c3: "rgba(180, 83, 9, "      // Warm brass
+      };
+    } else {
+      return {
+        c1: "rgba(112, 141, 50, ",  // Vibrant olive
+        c2: "rgba(82, 194, 173, ",   // Sage cyan
+        c3: "rgba(245, 158, 11, "   // Warm gold amber
+      };
+    }
+  }
+
+  let palette = getThemeColors();
+
+  window.addEventListener("atomverseThemeChanged", () => {
+    palette = getThemeColors();
+    particles.forEach(p => {
+      const r = Math.random();
+      p.colorPrefix = r > 0.6 ? palette.c1 : (r > 0.3 ? palette.c2 : palette.c3);
+    });
+  });
+
   for (let i = 0; i < particleCount; i++) {
+    const r = Math.random();
     particles.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.35,
-      vy: (Math.random() - 0.5) * 0.35,
+      vx: (Math.random() - 0.5) * 0.32,
+      vy: (Math.random() - 0.5) * 0.32,
       radius: Math.random() * 2 + 1,
-      color: Math.random() > 0.6 ? "rgba(245, 158, 11, " : "rgba(34, 211, 238, ",
+      colorPrefix: r > 0.6 ? palette.c1 : (r > 0.3 ? palette.c2 : palette.c3),
       alpha: Math.random() * 0.25 + 0.1
     });
   }
@@ -68,7 +155,7 @@ function initAmbientParticles() {
       if (p.y < 0) p.y = height;
       if (p.y > height) p.y = 0;
 
-      ctx.fillStyle = p.color + p.alpha + ")";
+      ctx.fillStyle = p.colorPrefix + p.alpha + ")";
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
       ctx.fill();

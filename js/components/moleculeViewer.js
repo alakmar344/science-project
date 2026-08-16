@@ -277,9 +277,11 @@ window.ATOMVERSE.MoleculeViewer = (function () {
     const nx = -dy / dist;
     const ny = dx / dist;
 
+    const isLight = document.documentElement.getAttribute("data-theme") === "light";
+
     if (isIonic) {
       // Ionic attraction: Glowing dashed line
-      ctx.strokeStyle = "#818cf8";
+      ctx.strokeStyle = isLight ? "#4f7324" : "#8dae46";
       ctx.lineWidth = 3;
       ctx.setLineDash([6, 6]);
       ctx.beginPath();
@@ -293,21 +295,21 @@ window.ATOMVERSE.MoleculeViewer = (function () {
 
     const offset = 6;
     if (order === 1) {
-      drawBondCylinder(ctx, a1.x, a1.y, a2.x, a2.y, 6);
+      drawBondCylinder(ctx, a1.x, a1.y, a2.x, a2.y, 6, isLight);
     } else if (order === 2) {
-      drawBondCylinder(ctx, a1.x + nx * offset, a1.y + ny * offset, a2.x + nx * offset, a2.y + ny * offset, 4.5);
-      drawBondCylinder(ctx, a1.x - nx * offset, a1.y - ny * offset, a2.x - nx * offset, a2.y - ny * offset, 4.5);
+      drawBondCylinder(ctx, a1.x + nx * offset, a1.y + ny * offset, a2.x + nx * offset, a2.y + ny * offset, 4.5, isLight);
+      drawBondCylinder(ctx, a1.x - nx * offset, a1.y - ny * offset, a2.x - nx * offset, a2.y - ny * offset, 4.5, isLight);
     } else if (order === 3) {
-      drawBondCylinder(ctx, a1.x, a1.y, a2.x, a2.y, 4);
-      drawBondCylinder(ctx, a1.x + nx * (offset * 1.3), a1.y + ny * (offset * 1.3), a2.x + nx * (offset * 1.3), a2.y + ny * (offset * 1.3), 3.5);
-      drawBondCylinder(ctx, a1.x - nx * (offset * 1.3), a1.y - ny * (offset * 1.3), a2.x - nx * (offset * 1.3), a2.y - ny * (offset * 1.3), 3.5);
+      drawBondCylinder(ctx, a1.x, a1.y, a2.x, a2.y, 4, isLight);
+      drawBondCylinder(ctx, a1.x + nx * (offset * 1.3), a1.y + ny * (offset * 1.3), a2.x + nx * (offset * 1.3), a2.y + ny * (offset * 1.3), 3.5, isLight);
+      drawBondCylinder(ctx, a1.x - nx * (offset * 1.3), a1.y - ny * (offset * 1.3), a2.x - nx * (offset * 1.3), a2.y - ny * (offset * 1.3), 3.5, isLight);
     }
 
     ctx.restore();
   }
 
-  function drawBondCylinder(ctx, x1, y1, x2, y2, width) {
-    ctx.strokeStyle = "#475569";
+  function drawBondCylinder(ctx, x1, y1, x2, y2, width, isLight) {
+    ctx.strokeStyle = isLight ? "#94a3b8" : "#475569";
     ctx.lineWidth = width;
     ctx.lineCap = "round";
     ctx.beginPath();
@@ -316,7 +318,7 @@ window.ATOMVERSE.MoleculeViewer = (function () {
     ctx.stroke();
 
     // Specular highlight line along center
-    ctx.strokeStyle = "#94a3b8";
+    ctx.strokeStyle = isLight ? "#e2e8f0" : "#94a3b8";
     ctx.lineWidth = width * 0.35;
     ctx.beginPath();
     ctx.moveTo(x1, y1);
