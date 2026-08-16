@@ -5,9 +5,102 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ATOMVERSE — Class 9 Atoms & Molecules Interactive Science Museum</title>
   <meta name="description" content="A museum-quality, offline-capable interactive web app teaching Class 9 Atoms and Molecules, featuring Bohr model simulation, 3D molecular geometries, periodic table explorer, verified historical archives, and quick challenges.">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260816">
   <meta name="theme-color" content="#090e13" id="meta-theme-color">
   <script>
+    var ATOMVERSE_THEME_CONFIG = {
+      light: {
+        '--bg-core': '#f5f8f5',
+        '--bg-surface': '#ffffff',
+        '--bg-card': '#ffffff',
+        '--bg-card-hover': '#edf3ed',
+        '--bg-card-active': '#e2ede2',
+        '--bg-overlay': 'rgba(245, 248, 245, 0.92)',
+        '--border-subtle': '#e2e8f0',
+        '--border-medium': '#cbd5e1',
+        '--border-bright': '#4f7324',
+        '--border-focus': '#638b2c',
+        '--accent-olive': '#4f7324',
+        '--accent-olive-bright': '#638b2c',
+        '--accent-olive-muted': '#38531a',
+        '--accent-olive-glow': 'rgba(79, 115, 36, 0.2)',
+        '--accent-olive-soft': 'rgba(79, 115, 36, 0.1)',
+        '--accent-olive-subtle': 'rgba(79, 115, 36, 0.05)',
+        '--accent-amber': '#b45309',
+        '--accent-amber-bright': '#d97706',
+        '--accent-amber-muted': '#78350f',
+        '--accent-amber-glow': 'rgba(180, 83, 9, 0.18)',
+        '--accent-amber-soft': 'rgba(180, 83, 9, 0.09)',
+        '--accent-cyan': '#1e7061',
+        '--accent-cyan-bright': '#2d8f7d',
+        '--accent-cyan-muted': '#134e43',
+        '--accent-cyan-glow': 'rgba(30, 112, 97, 0.18)',
+        '--accent-cyan-soft': 'rgba(30, 112, 97, 0.09)',
+        '--text-primary': '#0b1319',
+        '--text-secondary': '#475569',
+        '--text-muted': '#64748b',
+        '--text-inverse': '#ffffff',
+        '--shadow-sm': '0 1px 3px rgba(11, 19, 25, 0.06)',
+        '--shadow-md': '0 4px 16px -2px rgba(11, 19, 25, 0.08)',
+        '--shadow-lg': '0 12px 28px -4px rgba(11, 19, 25, 0.12)',
+        '--shadow-glow-amber': '0 0 16px rgba(217, 119, 6, 0.15)',
+        '--shadow-glow-cyan': '0 0 16px rgba(30, 112, 97, 0.15)',
+        '--shadow-glow-olive': '0 0 16px rgba(79, 115, 36, 0.18)',
+        '--gradient-primary': 'linear-gradient(135deg, #38531a 0%, #4f7324 100%)',
+        '--gradient-primary-hover': 'linear-gradient(135deg, #2d4215 0%, #405d1c 100%)',
+        '--gradient-hero-title': 'linear-gradient(135deg, #b45309 0%, #4f7324 50%, #1e7061 100%)',
+        '--gradient-card-hero': 'linear-gradient(135deg, #ffffff 0%, #f4f8f4 100%)',
+        '--gradient-card-identity': 'linear-gradient(135deg, #ffffff 0%, #f0f6f0 100%)',
+        '--gradient-avatar': 'linear-gradient(135deg, #4f7324 0%, #f0f4f0 100%)',
+        '--gradient-avatar-large': 'linear-gradient(135deg, #38531a 0%, #4f7324 50%, #d97706 100%)'
+      },
+      dark: {
+        '--bg-core': '#090e13',
+        '--bg-surface': '#0e1620',
+        '--bg-card': '#131e2b',
+        '--bg-card-hover': '#192737',
+        '--bg-card-active': '#1f3145',
+        '--bg-overlay': 'rgba(9, 14, 19, 0.88)',
+        '--border-subtle': '#1c2b3a',
+        '--border-medium': '#263c4f',
+        '--border-bright': '#708d32',
+        '--border-focus': '#8dae46',
+        '--accent-olive': '#708d32',
+        '--accent-olive-bright': '#8dae46',
+        '--accent-olive-muted': '#4e6720',
+        '--accent-olive-glow': 'rgba(112, 141, 50, 0.25)',
+        '--accent-olive-soft': 'rgba(112, 141, 50, 0.14)',
+        '--accent-olive-subtle': 'rgba(112, 141, 50, 0.08)',
+        '--accent-amber': '#d97706',
+        '--accent-amber-bright': '#f59e0b',
+        '--accent-amber-muted': '#92400e',
+        '--accent-amber-glow': 'rgba(217, 119, 6, 0.25)',
+        '--accent-amber-soft': 'rgba(245, 158, 11, 0.14)',
+        '--accent-cyan': '#3b9b88',
+        '--accent-cyan-bright': '#52c2ad',
+        '--accent-cyan-muted': '#1e6b5d',
+        '--accent-cyan-glow': 'rgba(59, 155, 136, 0.25)',
+        '--accent-cyan-soft': 'rgba(59, 155, 136, 0.14)',
+        '--text-primary': '#f1f5f9',
+        '--text-secondary': '#94a3b8',
+        '--text-muted': '#64748b',
+        '--text-inverse': '#090e13',
+        '--shadow-sm': '0 2px 4px rgba(0, 0, 0, 0.4)',
+        '--shadow-md': '0 4px 14px rgba(0, 0, 0, 0.5)',
+        '--shadow-lg': '0 10px 25px rgba(0, 0, 0, 0.6)',
+        '--shadow-glow-amber': '0 0 20px rgba(245, 158, 11, 0.2)',
+        '--shadow-glow-cyan': '0 0 20px rgba(82, 194, 173, 0.2)',
+        '--shadow-glow-olive': '0 0 20px rgba(112, 141, 50, 0.25)',
+        '--gradient-primary': 'linear-gradient(135deg, #4e6720 0%, #708d32 100%)',
+        '--gradient-primary-hover': 'linear-gradient(135deg, #40551a 0%, #5d7827 100%)',
+        '--gradient-hero-title': 'linear-gradient(135deg, #f59e0b 0%, #8dae46 50%, #52c2ad 100%)',
+        '--gradient-card-hero': 'linear-gradient(135deg, #0e1722 0%, #152230 100%)',
+        '--gradient-card-identity': 'linear-gradient(135deg, #101c26 0%, #162635 100%)',
+        '--gradient-avatar': 'linear-gradient(135deg, #4e6720 0%, #0e1620 100%)',
+        '--gradient-avatar-large': 'linear-gradient(135deg, #38531a 0%, #708d32 50%, #d97706 100%)'
+      }
+    };
+
     window.ATOMVERSE_THEME = {
       get: function() {
         try {
@@ -18,16 +111,30 @@
       },
       set: function(theme) {
         var next = theme === 'light' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
+        var root = document.documentElement;
+        root.setAttribute('data-theme', next);
         if (document.body) {
           document.body.setAttribute('data-theme', next);
           document.body.classList.toggle('light-mode', next === 'light');
         }
+
+        // Apply all CSS custom variables directly to root style object for 100% reliable instantaneous updates
+        var vars = ATOMVERSE_THEME_CONFIG[next] || ATOMVERSE_THEME_CONFIG.dark;
+        for (var key in vars) {
+          root.style.setProperty(key, vars[key]);
+        }
+        if (document.body) {
+          document.body.style.backgroundColor = vars['--bg-core'];
+          document.body.style.color = vars['--text-primary'];
+        }
+
         try {
           localStorage.setItem('atomverse_theme', next);
         } catch(e) {}
+
         var meta = document.getElementById('meta-theme-color');
         if (meta) meta.setAttribute('content', next === 'light' ? '#f5f8f5' : '#090e13');
+
         var btn = document.getElementById('theme-toggle-btn');
         if (btn) {
           if (next === 'light') {
@@ -38,6 +145,7 @@
             btn.title = 'Switch to Crisp Olive Light Mode';
           }
         }
+
         window.dispatchEvent(new CustomEvent('atomverseThemeChanged', { detail: { theme: next } }));
       },
       toggle: function() {
@@ -47,7 +155,7 @@
     };
     (function() {
       var initial = window.ATOMVERSE_THEME.get();
-      document.documentElement.setAttribute('data-theme', initial);
+      window.ATOMVERSE_THEME.set(initial);
     })();
   </script>
 </head>
