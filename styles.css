@@ -6,7 +6,11 @@
    100% Offline, Zero external CDN dependencies, 200-400ms smooth transitions.
    ========================================================================== */
 
-:root {
+:root,
+:root[data-theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+[data-theme="dark"] {
   /* Dark Mode Default (Deep Midnight Ink & Heritage Olive) */
   --bg-core: #090e13;
   --bg-surface: #0e1620;
@@ -73,7 +77,12 @@
 }
 
 /* Light Theme (Ivory Paper & Rich Fountain Ink + Heritage Olive) */
-[data-theme="light"] {
+:root[data-theme="light"],
+html[data-theme="light"],
+body[data-theme="light"],
+[data-theme="light"],
+.light-mode,
+body.light-mode {
   --bg-core: #f5f8f5;
   --bg-surface: #ffffff;
   --bg-card: #ffffff;

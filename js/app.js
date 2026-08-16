@@ -31,54 +31,54 @@ document.addEventListener("DOMContentLoaded", () => {
  * Theme Engine (Deep Ink Dark Mode & Crisp Ivory/Olive Light Mode)
  */
 function initThemeToggle() {
-  const themeBtn = document.getElementById("theme-toggle-btn");
-  const themeText = document.getElementById("theme-toggle-text");
-  const metaThemeColor = document.getElementById("meta-theme-color");
-
-  function getStoredTheme() {
-    return document.documentElement.getAttribute("data-theme") || localStorage.getItem("atomverse_theme") || "dark";
-  }
-
-  function applyTheme(theme) {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("atomverse_theme", theme);
-
-    if (metaThemeColor) {
-      metaThemeColor.setAttribute("content", theme === "light" ? "#f5f8f5" : "#090e13");
-    }
-
-    if (themeBtn && themeText) {
-      if (theme === "light") {
-        themeBtn.innerHTML = `
-          <span class="theme-icon-slot">
-            <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-          </span>
-          <span id="theme-toggle-text">Dark Mode</span>
-        `;
-        themeBtn.title = "Switch to Deep Ink Dark Mode";
-      } else {
-        themeBtn.innerHTML = `
-          <span class="theme-icon-slot">
-            <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-          </span>
-          <span id="theme-toggle-text">Light Mode</span>
-        `;
-        themeBtn.title = "Switch to Crisp Olive Light Mode";
+  if (!window.ATOMVERSE_THEME) {
+    window.ATOMVERSE_THEME = {
+      get: function() {
+        try {
+          return localStorage.getItem('atomverse_theme') || document.documentElement.getAttribute('data-theme') || 'dark';
+        } catch(e) {
+          return document.documentElement.getAttribute('data-theme') || 'dark';
+        }
+      },
+      set: function(theme) {
+        var next = theme === 'light' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        if (document.body) {
+          document.body.setAttribute('data-theme', next);
+          document.body.classList.toggle('light-mode', next === 'light');
+        }
+        try {
+          localStorage.setItem('atomverse_theme', next);
+        } catch(e) {}
+        var meta = document.getElementById('meta-theme-color');
+        if (meta) meta.setAttribute('content', next === 'light' ? '#f5f8f5' : '#090e13');
+        var btn = document.getElementById('theme-toggle-btn');
+        if (btn) {
+          if (next === 'light') {
+            btn.innerHTML = '<span class="theme-icon-slot"><svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span><span id="theme-toggle-text">Dark Mode</span>';
+            btn.title = 'Switch to Deep Ink Dark Mode';
+          } else {
+            btn.innerHTML = '<span class="theme-icon-slot"><svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span><span id="theme-toggle-text">Light Mode</span>';
+            btn.title = 'Switch to Crisp Olive Light Mode';
+          }
+        }
+        window.dispatchEvent(new CustomEvent('atomverseThemeChanged', { detail: { theme: next } }));
+      },
+      toggle: function() {
+        var current = window.ATOMVERSE_THEME.get();
+        window.ATOMVERSE_THEME.set(current === 'light' ? 'dark' : 'light');
       }
-    }
-
-    // Broadcast theme change event for active canvases
-    window.dispatchEvent(new CustomEvent("atomverseThemeChanged", { detail: { theme } }));
+    };
   }
 
-  const currentTheme = getStoredTheme();
-  applyTheme(currentTheme);
+  // Refresh UI to match current theme
+  window.ATOMVERSE_THEME.set(window.ATOMVERSE_THEME.get());
 
+  const themeBtn = document.getElementById("theme-toggle-btn");
   if (themeBtn) {
-    themeBtn.addEventListener("click", () => {
-      const active = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
-      const next = active === "light" ? "dark" : "light";
-      applyTheme(next);
+    themeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.ATOMVERSE_THEME.toggle();
     });
   }
 }
